@@ -1,0 +1,15 @@
+# Java / Maven
+backend-java/target/
+*.jar
+*.war
+*.class
+
+# Node / React frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Logs & OS files
+*.log
+.DS_Store
+Thumbs.db

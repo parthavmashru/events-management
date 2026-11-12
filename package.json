@@ -1,0 +1,11 @@
+{
+  "name": "college-event-management",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node -e \"const net=require('net'),cp=require('child_process'),fs=require('fs');const s=net.connect(5000,'127.0.0.1',()=>s.destroy());s.on('error',()=>{const jar='backend-java/target/college-event-backend-1.0.0.jar';const p=fs.existsSync(jar)?cp.spawn('java',['-jar',jar],{detached:true,stdio:'ignore'}):cp.spawn('mvn',['-f','backend-java/pom.xml','spring-boot:run'],{detached:true,stdio:'ignore'});p.unref();});\" && npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "lint": "npm --prefix frontend run build"
+  }
+}

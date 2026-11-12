@@ -1,0 +1,6 @@
+{
+  "name": "College Event Management System",
+  "description": "College Event Management System with React frontend, Java Spring Boot backend, and SQLite database.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
