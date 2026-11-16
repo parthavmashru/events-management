@@ -39,9 +39,27 @@ class CollegeEventApiIntegrationTest {
     }
 
     @AfterAll
-    static void cleanup() throws IOException {
-        if (tempDbFile != null) {
-            Files.deleteIfExists(tempDbFile);
+    static void cleanup() {
+        if (tempDbFile == null) {
+            return;
+        }
+        // SQLite/Hikari keep a native file lock on Windows until the JVM exits.
+        // Fail the suite on assertion errors, not on temp-file deletion.
+        tempDbFile.toFile().deleteOnExit();
+        Path wal = Path.of(tempDbFile.toString() + "-wal");
+        Path shm = Path.of(tempDbFile.toString() + "-shm");
+        wal.toFile().deleteOnExit();
+        shm.toFile().deleteOnExit();
+        tryDelete(tempDbFile);
+        tryDelete(wal);
+        tryDelete(shm);
+    }
+
+    private static void tryDelete(Path path) {
+        try {
+            Files.deleteIfExists(path);
+        } catch (IOException ignored) {
+            // left for deleteOnExit()
         }
     }
 
